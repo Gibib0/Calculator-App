@@ -74,3 +74,20 @@
         size_hint_y: 0.2
         font_size: 30
 
+
+<ErrorPopup>:
+    title: 'MATH ERROR'
+    size_hint: 0.8, 0.6
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'ARE YOU FUCKING KIDDING ME!? 0?? REALLY?? YOU MOTHERFUCKER, HOW MORE STUPID YOU CAN BE, DUMBASS!? GO BACK TO SCHOOL, YOU STINKY KID, BRUH. SAY THANKS THAT I DIDN`T DOWNLOAD A VIRUS ONTO YOUR COMPUTER, DICKHEAD -_-'
+            text_size: self.width, None
+            halign: 'center'
+            valign: 'middle'
+            size_hint_y: 0.8
+        Button:
+            text: 'OK'
+            size_hint_y: 0.2
+            on_press: root.dismiss()
+

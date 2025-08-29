@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.popup import Popup
 
 class CalculatorLayout(BoxLayout):
     def digit_button(self, digit):
@@ -44,6 +45,8 @@ class CalculatorLayout(BoxLayout):
             if num2 == 0:
                 self.show_error()
                 return
+            else:
+                result = num1 / num2
 
         self.current_number = str(result)
 
@@ -57,6 +60,22 @@ class CalculatorLayout(BoxLayout):
             self.current_number += '.'
             self.ids.display.text = self.current_number
 
+    def show_error(self):
+        self.current_number = 'Error'
+        self.ids.display.text = 'ERROR'
+
+        popup = ErrorPopup()
+        popup.open()
+
+        self.play_error_sound()
+
+        self.stored_number = None
+        self.operation = None
+        self.reset_screen = True
+
+    def play_error_sound(self):
+
+        pass
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -68,6 +87,9 @@ class CalculatorLayout(BoxLayout):
 class CalculatorApp(App):
     def build(self):
         return CalculatorLayout()
+
+class ErrorPopup(Popup):
+    pass
 
 if __name__ == '__main__':
     CalculatorApp().run()
