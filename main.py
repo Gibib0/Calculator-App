@@ -2,9 +2,18 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
 from kivy.graphics import Rectangle
-from kivy.core.image import Image
+from kivy.core.audio import SoundLoader
 
 class CalculatorLayout(BoxLayout):
+
+    def play_click_sound(self):
+        if self.click_sound:
+            self.click_sound.play()
+
+    def play_error_sound(self):
+        if self.error_sound:
+            self.error_sound.play()
+
     def digit_button(self, digit):
         if self.reset_screen:
             self.current_number = digit
@@ -75,15 +84,15 @@ class CalculatorLayout(BoxLayout):
         self.operation = None
         self.reset_screen = True
 
-    def play_error_sound(self):
-        pass
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.current_number = '0'
         self.stored_number = None
         self.operation = None
         self.reset_screen = False
+
+        self.click_sound = SoundLoader.load('assets/sounds/click_sound.wav')
+        self.error_sound = SoundLoader.load('assets/sounds/error_sound.wav')
 
 class CalculatorApp(App):
     def build(self):
