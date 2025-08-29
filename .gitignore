@@ -1,0 +1,15 @@
+.idea/
+*.iml
+venv/
+.venv/
+env/
+dist/
+build/
+*.exe
+*.apk
+*.pyc
+__pycache__/
+*.log
+*.tmp
+
+
