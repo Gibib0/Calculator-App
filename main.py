@@ -3,7 +3,15 @@ from kivy.uix.boxlayout import BoxLayout
 
 class CalculatorLayout(BoxLayout):
     def digit_button(self, digit):
-        print(f'Number {digit}')
+        if self.reset_screen:
+            self.current_number = digit
+            self.reset_screen = False
+        elif self.current_number == '0':
+            self.current_number = digit
+        else:
+            self.current_number += digit
+
+        self.ids.display.text = self.current_number
 
     def operstion_button(self, op):
         print(f'Number {op}')
@@ -16,6 +24,14 @@ class CalculatorLayout(BoxLayout):
 
     def decimal_button(self):
         print('Decimal point')
+
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.current_number = '0'
+        self.stored_number = None
+        self.operation = None
+        self.reset_screen = False
 
 class CalculatorApp(App):
     def build(self):
