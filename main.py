@@ -13,8 +13,13 @@ class CalculatorLayout(BoxLayout):
 
         self.ids.display.text = self.current_number
 
-    def operstion_button(self, op):
-        print(f'Number {op}')
+    def operation_button(self, op):
+        if self.operation and not self.reset_screen:
+            self.equals_button()
+
+        self.stored_number = self.current_number
+        self.operation = op
+        self.reset_screen = True
 
     def clear_button(self):
         self.current_number = '0'
@@ -24,7 +29,28 @@ class CalculatorLayout(BoxLayout):
         self.ids.display.text = self.current_number
 
     def equals_button(self):
-        print('Equals')
+        if not self.stored_number or not self.operation:
+           return
+        num1 = float(self.stored_number)
+        num2 = float(self.current_number)
+
+        if self.operation == '+':
+            result = num1 + num2
+        elif self.operation == '-':
+            result = num1 - num2
+        elif self.operation == '*':
+            result = num1 * num2
+        elif self.operation == '/':
+            if num2 == 0:
+                self.show_error()
+                return
+
+        self.current_number = str(result)
+
+        self.ids.display.text = self.current_number
+
+        self.operation = None
+        self.reset_screen = True
 
     def decimal_button(self):
         if '.' not in self.current_number:
