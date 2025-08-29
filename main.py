@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
+from kivy.graphics import Rectangle
+from kivy.core.image import Image
 
 class CalculatorLayout(BoxLayout):
     def digit_button(self, digit):
@@ -74,7 +76,6 @@ class CalculatorLayout(BoxLayout):
         self.reset_screen = True
 
     def play_error_sound(self):
-
         pass
 
     def __init__(self, **kwargs):

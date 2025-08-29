@@ -1,7 +1,33 @@
+<GreenButton@Button>:
+    background_color: 0, 0, 0, 0
+    color: 0, 0, 0, 1
+    font_size: 24
+    bold: True
+    canvas.before:
+        Color:
+            rgba: 0, 0.3, 0, 0.6
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10,]
+
+        Color:
+            rgba: 0, 0, 0, 0.7
+        Line:
+            rounded_rectangle: [self.x, self.y, self.width, self.height, 10]
+            width: 1.5
+
 <CalculatorLayout>:
     orientation: 'vertical'
-    spacing: 10
-    padding: 20
+    spacing: 30
+    padding: 5
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'assets/images/background.jpeg'
+
 
     TextInput:
         id: display
@@ -10,65 +36,69 @@
         size_hint_y: 0.3
         multiline: False
         readonly: True
+        background_color: 0, 0, 0, 0.5
+        foreground_color: 0, 1, 0, 1
+        cursor_color: 0, 1, 0, 1
 
     GridLayout:
         cols: 4
         rows: 5
-        spacing: 5
+        spacing: 30
 
-        Button:
+
+        GreenButton:
             text: '7'
             on_press: app.root.digit_button('7')
-        Button:
+        GreenButton:
             text: '8'
             on_press: app.root.digit_button('8')
-        Button:
+        GreenButton:
             text: '9'
             on_press: app.root.digit_button('9')
-        Button:
+        GreenButton:
             text: '/'
             on_press: app.root.operation_button('/')
 
-        Button:
+        GreenButton:
             text: '4'
             on_press: app.root.digit_button('4')
-        Button:
+        GreenButton:
             text: '5'
             on_press: app.root.digit_button('5')
-        Button:
+        GreenButton:
             text: '6'
             on_press: app.root.digit_button('6')
-        Button:
+        GreenButton:
             text: '*'
             on_press: app.root.operation_button('*')
 
-        Button:
+        GreenButton:
             text: '1'
             on_press: app.root.digit_button('1')
-        Button:
+        GreenButton:
             text: '2'
             on_press: app.root.digit_button('2')
-        Button:
+        GreenButton:
             text: '3'
             on_press: app.root.digit_button('3')
-        Button:
+        GreenButton:
             text: '-'
             on_press: app.root.operation_button('-')
 
-        Button:
+        GreenButton:
             text: '0'
             on_press: app.root.digit_button('0')
-        Button:
+        GreenButton:
             text: '.'
             on_press: app.root.decimal_button()
-        Button:
+        GreenButton:
             text: 'C'
             on_press: app.root.clear_button()
-        Button:
+        GreenButton:
             text: '+'
             on_press: app.root.operation_button('+')
 
-    Button:
+    GreenButton:
         text: '='
         on_press: app.root.equals_button()
         size_hint_y: 0.2
