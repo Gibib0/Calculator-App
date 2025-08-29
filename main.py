@@ -17,13 +17,19 @@ class CalculatorLayout(BoxLayout):
         print(f'Number {op}')
 
     def clear_button(self):
-        print('Clear')
+        self.current_number = '0'
+        self.stored_number = None
+        self.operation = None
+        self.reset_screen = False
+        self.ids.display.text = self.current_number
 
     def equals_button(self):
         print('Equals')
 
     def decimal_button(self):
-        print('Decimal point')
+        if '.' not in self.current_number:
+            self.current_number += '.'
+            self.ids.display.text = self.current_number
 
 
     def __init__(self, **kwargs):
