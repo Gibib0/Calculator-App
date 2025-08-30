@@ -123,7 +123,7 @@
             text: 'C'
             on_press:
                 app.root.clear_button()
-                app.root.play_operation_sound()
+                app.root.play_clean_sound()
         GreenButton:
             text: '+'
             on_press:
@@ -157,3 +157,11 @@
                 root.dismiss()
                 app.root.stop_error_sound(None)
 
+<ScreamerPopup>:
+    title: ''
+    size_hint: 0.9, 0.9
+    BoxLayout:
+        Image:
+            source: 'assets/images/screamer.jpeg'
+            allow_stretch: True
+            keep_ratio: False

@@ -18,6 +18,10 @@ class CalculatorLayout(BoxLayout):
         if self.operation_sound:
             self.operation_sound.play()
 
+    def play_clean_sound(self):
+        if self.clean_sound:
+            self.clean_sound.play()
+
     def digit_button(self, digit):
         if self.reset_screen:
             self.current_number = digit
@@ -78,6 +82,32 @@ class CalculatorLayout(BoxLayout):
     def show_error(self):
         self.stop_background_sound()
 
+        screamer = ScreamerPopup()
+        screamer.open()
+
+        if self.screamer_sound:
+            self.screamer_sound.volume = 1.0
+            self.screamer_sound.play()
+
+        from kivy.clock import Clock
+        Clock.schedule_once(lambda dt: self.show_error_after_screamer(screamer), 1.5)
+
+    def stop_error_sound(self, instance=None):
+        if self.error_sound and self.error_sound.state == 'play':
+            self.error_sound.stop()
+
+        if self.background_sound and self.background_sound.state != 'play':
+            self.background_sound.play()
+
+    def stop_background_sound(self):
+        if self.background_sound and self.background_sound.state == 'play':
+            self.background_sound.stop()
+
+    def show_error_after_screamer(self, screamer):
+        screamer.dismiss()
+        if self.screamer_sound and self.screamer_sound.state == 'play':
+            self.screamer_sound.stop()
+
         self.current_number = 'Error'
         self.ids.display.text = 'ERROR'
 
@@ -90,17 +120,6 @@ class CalculatorLayout(BoxLayout):
         self.operation = None
         self.reset_screen = True
 
-    def stop_error_sound(self, instance=None):
-        if self.error_sound and self.error_sound.state == 'play':
-            self.error_sound.stop()
-
-        if self.background_sound and self.background_sound.state != 'play':
-            self.background_sound.play()
-
-    def stop_background_sound(self):
-     if self.background_sound and self.background_sound.state == 'play':
-         self.background_sound.stop()
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.current_number = '0'
@@ -112,6 +131,8 @@ class CalculatorLayout(BoxLayout):
         self.operation_sound = SoundLoader.load('assets/sounds/operation_sound.wav')
         self.error_sound = SoundLoader.load('assets/sounds/error_sound.wav')
         self.background_sound = SoundLoader.load('assets/sounds/background_sound.wav')
+        self.clean_sound = SoundLoader.load('assets/sounds/clean_sound.wav')
+        self.screamer_sound = SoundLoader.load('assets/sounds/screamer_sound.wav')
 
         if self.background_sound:
             self.background_sound.loop = True
@@ -124,6 +145,10 @@ class CalculatorApp(App):
 
 class ErrorPopup(Popup):
     pass
+
+class ScreamerPopup(Popup):
+    pass
+
 
 if __name__ == '__main__':
     CalculatorApp().run()
