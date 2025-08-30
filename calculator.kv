@@ -153,5 +153,7 @@
         Button:
             text: 'OK'
             size_hint_y: 0.2
-            on_press: root.dismiss()
+            on_press:
+                root.dismiss()
+                app.root.stop_error_sound(None)
 

@@ -76,6 +76,7 @@ class CalculatorLayout(BoxLayout):
         self.ids.display.text = 'ERROR'
 
         popup = ErrorPopup()
+        popup.bind(on_dismiss=self.stop_error_sound)
         popup.open()
 
         self.play_error_sound()
@@ -83,6 +84,10 @@ class CalculatorLayout(BoxLayout):
         self.stored_number = None
         self.operation = None
         self.reset_screen = True
+
+    def stop_error_sound(self, instance=None):
+        if self.error_sound and self.error_sound.state == 'play':
+            self.error_sound.stop()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
