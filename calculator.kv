@@ -65,7 +65,7 @@
             text: '/'
             on_press:
                 app.root.operation_button('/')
-                app.root.play_click_sound()
+                app.root.play_operation_sound()
 
         GreenButton:
             text: '4'
@@ -86,7 +86,7 @@
             text: '*'
             on_press:
                 app.root.operation_button('*')
-                app.root.play_click_sound()
+                app.root.play_operation_sound()
 
         GreenButton:
             text: '1'
@@ -107,7 +107,7 @@
             text: '-'
             on_press:
                 app.root.operation_button('-')
-                app.root.play_click_sound()
+                app.root.play_operation_sound()
 
         GreenButton:
             text: '0'
@@ -118,23 +118,23 @@
             text: '.'
             on_press:
                 app.root.decimal_button()
-                app.root.play_click_sound()
+                app.root.play_operation_sound()
         GreenButton:
             text: 'C'
             on_press:
                 app.root.clear_button()
-                app.root.play_click_sound()
+                app.root.play_operation_sound()
         GreenButton:
             text: '+'
             on_press:
                 app.root.operation_button('+')
-                app.root.play_click_sound()
+                app.root.play_operation_sound()
 
     GreenButton:
         text: '='
         on_press:
             app.root.equals_button()
-            app.root.play_click_sound()
+            app.root.play_operation_sound()
         size_hint_y: 0.2
         font_size: 30
 

@@ -14,6 +14,10 @@ class CalculatorLayout(BoxLayout):
         if self.error_sound:
             self.error_sound.play()
 
+    def play_operation_sound(self):
+        if self.operation_sound:
+            self.operation_sound.play()
+
     def digit_button(self, digit):
         if self.reset_screen:
             self.current_number = digit
@@ -105,6 +109,7 @@ class CalculatorLayout(BoxLayout):
         self.reset_screen = False
 
         self.click_sound = SoundLoader.load('assets/sounds/click_sound.wav')
+        self.operation_sound = SoundLoader.load('assets/sounds/operation_sound.wav')
         self.error_sound = SoundLoader.load('assets/sounds/error_sound.wav')
         self.background_sound = SoundLoader.load('assets/sounds/background_sound.wav')
 
