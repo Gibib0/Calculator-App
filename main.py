@@ -72,6 +72,8 @@ class CalculatorLayout(BoxLayout):
             self.ids.display.text = self.current_number
 
     def show_error(self):
+        self.stop_background_sound()
+
         self.current_number = 'Error'
         self.ids.display.text = 'ERROR'
 
@@ -80,7 +82,6 @@ class CalculatorLayout(BoxLayout):
         popup.open()
 
         self.play_error_sound()
-
         self.stored_number = None
         self.operation = None
         self.reset_screen = True
@@ -88,6 +89,13 @@ class CalculatorLayout(BoxLayout):
     def stop_error_sound(self, instance=None):
         if self.error_sound and self.error_sound.state == 'play':
             self.error_sound.stop()
+
+        if self.background_sound and self.background_sound.state != 'play':
+            self.background_sound.play()
+
+    def stop_background_sound(self):
+     if self.background_sound and self.background_sound.state == 'play':
+         self.background_sound.stop()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -98,6 +106,12 @@ class CalculatorLayout(BoxLayout):
 
         self.click_sound = SoundLoader.load('assets/sounds/click_sound.wav')
         self.error_sound = SoundLoader.load('assets/sounds/error_sound.wav')
+        self.background_sound = SoundLoader.load('assets/sounds/background_sound.wav')
+
+        if self.background_sound:
+            self.background_sound.loop = True
+            self.background_sound.volume = 0.2
+            self.background_sound.play()
 
 class CalculatorApp(App):
     def build(self):
