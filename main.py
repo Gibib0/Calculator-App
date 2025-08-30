@@ -3,6 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
 from kivy.graphics import Rectangle
 from kivy.core.audio import SoundLoader
+from kivy.lang import Builder
 
 class CalculatorLayout(BoxLayout):
 

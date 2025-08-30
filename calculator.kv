@@ -5,17 +5,17 @@
     bold: True
     canvas.before:
         Color:
-            rgba: 0, 0.3, 0, 0.6
+            rgba: (0, 1, 0.2, 0.8) if self.state == 'down' else (0, 0.3, 0, 0.6)
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [10,]
+            radius: [5,]
 
         Color:
             rgba: 0, 0, 0, 0.7
         Line:
             rounded_rectangle: [self.x, self.y, self.width, self.height, 10]
-            width: 1.5
+            width: 5
 
 <CalculatorLayout>:
     orientation: 'vertical'
