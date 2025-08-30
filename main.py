@@ -68,7 +68,10 @@ class CalculatorLayout(BoxLayout):
             else:
                 result = num1 / num2
 
-        self.current_number = str(result)
+        if result.is_integer():
+            self.current_number = str(int(result))
+        else:
+            self.current_number = str(result)
 
         self.ids.display.text = self.current_number
 
@@ -142,6 +145,7 @@ class CalculatorLayout(BoxLayout):
 
 class CalculatorApp(App):
     def build(self):
+        self.icon = 'assets/icons/icon.ico'
         return CalculatorLayout()
 
 class ErrorPopup(Popup):
